@@ -1,11 +1,14 @@
 import { UserProvider } from './contexts/UserContext';
 import { HomePage } from './pages/HomePage';
+import { ChakraProvider } from '@chakra-ui/react';
 
 function App() {
   return (
-    <UserProvider>
-      <HomePage/>
-    </UserProvider>
+    <ChakraProvider>
+      <UserProvider>
+        <HomePage />
+      </UserProvider>
+    </ChakraProvider>
   )
 }
 
