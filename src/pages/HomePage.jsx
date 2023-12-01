@@ -1,7 +1,8 @@
-import { Button, Flex, Spacer, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import { Flex, Spacer, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import { useState } from "react";
 import styled from "styled-components";
 import Logo from "../components/Logo";
+import OrdersTab from "../components/Orders/OrdersTab";
 
 export function HomePage() {
     const [tabIndex, setTabIndex] = useState(0)
@@ -28,7 +29,7 @@ export function HomePage() {
                 </TabListSC>
                 <TabPanels>
                     <TabPanelSC>
-                        <p>Click the tabs or pull the slider around</p>
+                        <OrdersTab />
                     </TabPanelSC>
                     <TabPanelSC>
                         <p>Yeah yeah. What's up?</p>
@@ -61,6 +62,7 @@ const TabSC = styled(Tab).attrs(() => ({
 }))`
     color: #fff;
     font-size: 20px !important;
+    font-weight: 500;
     border-radius: 10px;
     height: 4dvh;
     margin: 1.5dvh 1dvw;
