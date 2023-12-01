@@ -2,6 +2,7 @@ import { Flex, Text } from "@chakra-ui/react";
 import SearchForm from "./SearchForm";
 import TitleSubtitle from "../TitleSubtitle";
 import Categories from "./Categories";
+import Products from "./Products";
 
 export default function OrdersTab() {
 
@@ -14,6 +15,9 @@ export default function OrdersTab() {
 
             <TitleSubtitle title={'Categorias'} subtitle={'Navegue por categoria'}/>
             <Categories/>
+
+            <TitleSubtitle title={'Produtos'} subtitle={'Selecione um produto para adicionar ao pedido'}/>
+            <Products />
         </Flex>
     )
 }

@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import ProductsContext from '../contexts/ProductsContext';
 
 export default function useProductsContext() {
-  const { productsData } = useContext(ProductsContext);
+  const { productsData, productsFilter, setProductsFilter } = useContext(ProductsContext);
 
-  return { productsData };
+  return { productsData, productsFilter, setProductsFilter };
 }
