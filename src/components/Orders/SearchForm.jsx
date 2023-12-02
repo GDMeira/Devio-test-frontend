@@ -1,22 +1,11 @@
-import { Input, InputGroup } from "@chakra-ui/react";
+import { Button, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import useProductsContext from "../../hooks/useProductsContext";
 
 export default function SearchForm() {
     const [product, setProduct] = useState('');
-    const [searchProductsResult, setSearchProductsResult] = useState([]);
-
-    async function handleSubmit(e) {
-        e.preventDefault();
-
-        //TODO:fazer a busca e abrir janela do produto encontrado
-        //se erro
-        // Swal.fire({
-        //     title: 'Erro',
-        //     icon: 'error',
-        //     text: 'Cidade não encontrada.'
-        // });
-    }
+    const { productsFilter, setProductsFilter } = useProductsContext()
 
     function handleKeyPress(e) {
         if (e.key === 'Enter') {
@@ -25,23 +14,24 @@ export default function SearchForm() {
     }
 
     return (<>
-        <form
-            onKeyDown={e => handleKeyPress(e)}
-            onSubmit={e => handleSubmit(e)}
-        >
-            <InputGroup boxShadow={'0px 24px 48px 0px #314F7C14'}>
-                <Input
-                    bgColor={'#EDEDEF'}
-                    w={'20dvw'} h={'5dvh'} minW={'200px'}
-                    borderRadius={'5px'}
-                    type="text"
-                    placeholder="O que você procura?"
-                    onChange={e => setProduct(e.target.value)}
-                    value={product}
-                    isInvalid={product.length > 0 && searchProductsResult.length === 0}
-                />
-            </InputGroup>
-        </form>
-
+        <InputGroup boxShadow={'0px 24px 48px 0px #314F7C14'} w={'30dvw'}>
+            <Input
+                bgColor={'#EDEDEF'}
+                w={'30dvw'} h={'5dvh'} minW={'200px'}
+                borderRadius={'5px'}
+                type="text"
+                placeholder="O que você procura?"
+                onChange={e => setProductsFilter({ ...productsFilter, nameOrId: e.target.value })}
+                value={productsFilter.nameOrId}
+            />
+            <InputRightElement>
+                <Button  
+                    onClick={() => setProductsFilter({ ...productsFilter, nameOrId: '' })}
+                    bg={'none'}
+                >
+                    X
+                </Button>
+            </InputRightElement>
+        </InputGroup>
     </>)
 }

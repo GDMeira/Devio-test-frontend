@@ -1,6 +1,6 @@
 import { Text } from "@chakra-ui/react";
 
-export default function SectionHeader({ title, subtitle }) {
+export default function TitleSubtitle({ title, subtitle }) {
     return (
         <>
             <Text fontWeight={700} fontSize={24} mt={'7dvh'} mb={3}>
