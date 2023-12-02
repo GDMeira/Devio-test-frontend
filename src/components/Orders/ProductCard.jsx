@@ -15,7 +15,7 @@ export default function ProductCard({ product, bgColor }) {
                 direction={'column'} h={'30dvh'}
                 justifyContent={'space-around'} alignItems={'center'} 
                 zIndex={2} >
-                <Image src={product.image} alt={product.name} w={'12dvh'} h={'12dvh'} />
+                <Image src={product.image} alt={product.name} w={'13dvh'} h={'13dvh'} />
                 <Box w={'10dvw'} overflow={'hidden'} textOverflow={'ellipsis'}>
                     <Text fontWeight={700} fontSize={24}>
                         {product.name}
