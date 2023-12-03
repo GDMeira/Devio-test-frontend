@@ -5,3 +5,9 @@ export async function getProducts() {
 
   return response.data;
 }
+
+export async function getExtras() {
+  const response = await api.get('/extras');
+
+  return response.data;
+}
