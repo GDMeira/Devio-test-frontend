@@ -1,6 +1,8 @@
 import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react"
 
-export default function OrderModal({isOpen, onClose}) {
+export default function OrderModal({ isOpen, onClose, selectedProduct }) {
+    console.log(selectedProduct);
+    
     return (
         <Modal
             onClose={onClose}

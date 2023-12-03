@@ -33,7 +33,7 @@ export default function ProductCard({ product, bgColor, setSelectedProduct, onOp
                     </Text>
                 </Box>
                 <Text fontWeight={700} fontSize={20} >
-                    R${(product.price / 100).toString().replace('.', ',')}
+                    R${((product.price - product.discount) / 100).toFixed(2).replace('.', ',')}
                 </Text>
             </Flex>
             <Box
