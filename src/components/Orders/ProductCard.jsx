@@ -1,8 +1,11 @@
 import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import styled from "styled-components";
 import bgImage from "../../assets/backgroundFastFood.png";
+import useProductsContext from "../../hooks/useProductsContext";
 
-export default function ProductCard({ product, bgColor }) {
+export default function ProductCard({ product, bgColor, setSelectedProduct, onOpen }) {
+    const {setProductsFilter} = useProductsContext();
+
     return (
         <ButtonSC 
             w={'15dvw'} h={'35dvh'} 
@@ -10,6 +13,11 @@ export default function ProductCard({ product, bgColor }) {
             bg={'none'} borderRadius={'20px'} 
             bgImage={bgImage} bgColor={bgColor} 
             mb={'7dvh'} mr={'2dvw'}
+            onClick={() => {
+                setSelectedProduct(product);
+                setProductsFilter({category: '', nameOrId: ''});
+                onOpen();
+            }}
         >
             <Flex 
                 direction={'column'} h={'30dvh'}
