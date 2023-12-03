@@ -5,7 +5,7 @@ import ProductCard from "./ProductCard";
 import { useEffect, useState } from "react";
 
 export default function Products() {
-    const { productsData, productsFilter } = useProductsContext();
+    const { productsData, productsFilter, extrasData } = useProductsContext();
     const [productsToRender, setProductsToRender] = useState([]);
 
     useEffect(() => {
