@@ -3,7 +3,7 @@ import styled from "styled-components";
 import bgImage from "../../assets/backgroundFastFood.png";
 import useProductsContext from "../../hooks/useProductsContext";
 
-export default function ProductCard({ product, bgColor, setSelectedProduct, onOpen }) {
+export default function ProductCard({ product, bgColor, setSelectedProduct, onOpen, setBgColor }) {
     const {setProductsFilter} = useProductsContext();
 
     return (
@@ -16,6 +16,7 @@ export default function ProductCard({ product, bgColor, setSelectedProduct, onOp
             onClick={() => {
                 setSelectedProduct(product);
                 setProductsFilter({category: '', nameOrId: ''});
+                setBgColor(bgColor);
                 onOpen();
             }}
         >
@@ -28,7 +29,7 @@ export default function ProductCard({ product, bgColor, setSelectedProduct, onOp
                     <Text fontWeight={700} fontSize={24}>
                         {product.name}
                     </Text>
-                    <Text fontWeight={400} fontSize={12} >
+                    <Text fontWeight={400} fontSize={12} color={'#6B6B6B'}>
                         {product.description}
                     </Text>
                 </Box>
