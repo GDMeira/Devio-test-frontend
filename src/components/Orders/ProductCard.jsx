@@ -1,8 +1,11 @@
 import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import styled from "styled-components";
 import bgImage from "../../assets/backgroundFastFood.png";
+import useProductsContext from "../../hooks/useProductsContext";
 
-export default function ProductCard({ product, bgColor }) {
+export default function ProductCard({ product, bgColor, setSelectedProduct, onOpen, setBgColor }) {
+    const {setProductsFilter} = useProductsContext();
+
     return (
         <ButtonSC 
             w={'15dvw'} h={'35dvh'} 
@@ -10,6 +13,12 @@ export default function ProductCard({ product, bgColor }) {
             bg={'none'} borderRadius={'20px'} 
             bgImage={bgImage} bgColor={bgColor} 
             mb={'7dvh'} mr={'2dvw'}
+            onClick={() => {
+                setSelectedProduct(product);
+                setProductsFilter({category: '', nameOrId: ''});
+                setBgColor(bgColor);
+                onOpen();
+            }}
         >
             <Flex 
                 direction={'column'} h={'30dvh'}
@@ -20,12 +29,12 @@ export default function ProductCard({ product, bgColor }) {
                     <Text fontWeight={700} fontSize={24}>
                         {product.name}
                     </Text>
-                    <Text fontWeight={400} fontSize={12} >
+                    <Text fontWeight={400} fontSize={12} color={'#6B6B6B'}>
                         {product.description}
                     </Text>
                 </Box>
                 <Text fontWeight={700} fontSize={20} >
-                    R${(product.price / 100).toString().replace('.', ',')}
+                    R${((product.price - product.discount) / 100).toFixed(2).replace('.', ',')}
                 </Text>
             </Flex>
             <Box

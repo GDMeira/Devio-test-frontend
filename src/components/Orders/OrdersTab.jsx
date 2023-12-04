@@ -1,11 +1,10 @@
 import { Flex, Text } from "@chakra-ui/react";
 import SearchForm from "./SearchForm";
-import TitleSubtitle from "../TitleSubtitle";
+import TitleSubtitle from "../Orders/TitleSubtitle";
 import Categories from "./Categories";
 import Products from "./Products";
 
 export default function OrdersTab() {
-
     return (
         <Flex direction={'column'} align={'flex-start'}>
             <Text fontWeight={700} fontSize={32} mb={3}>

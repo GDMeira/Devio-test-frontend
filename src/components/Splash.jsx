@@ -8,6 +8,7 @@ export default function Splash({ loading = false, message = '' }) {
       minH={'100dvh'} minW={'100dvw'} 
       position={'absolute'} top={0} 
       justifyContent={'center'} alignItems={'center'}
+      bgColor={'#125C13'}
     >
       <Grid>
         {loading && <Spinner/>}
