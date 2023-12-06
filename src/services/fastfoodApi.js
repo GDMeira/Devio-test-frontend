@@ -17,3 +17,9 @@ export async function getOrderCode() {
 
   return response.data;
 }
+
+export async function postOrder(order) {
+  const response = await api.post('/orders', order);
+
+  return response.data;
+}

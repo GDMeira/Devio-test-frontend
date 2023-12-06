@@ -18,6 +18,12 @@ export const paymentMethods = {
   cash: 'Dinheiro',
 };
 
+export const enumPaidWith = {
+  creditCard: 'CREDITCARD',
+  debitCard: 'DEBITCARD',
+  cash: 'CASH',
+};
+
 export const bgColors = ['#FA6767', '#125C13', '#FFEB70'];
 
 function productContains(product, nameOrId) {
