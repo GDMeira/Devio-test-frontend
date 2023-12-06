@@ -11,3 +11,9 @@ export async function getExtras() {
 
   return response.data;
 }
+
+export async function getOrderCode() {
+  const response = await api.get('/orders/code');
+
+  return response.data;
+}

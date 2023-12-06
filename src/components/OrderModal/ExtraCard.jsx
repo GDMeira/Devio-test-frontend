@@ -1,4 +1,6 @@
 import { Box, Flex, Image, Radio, Spacer, Text } from "@chakra-ui/react";
+import { centsToReal } from "../../utils/constants";
+import CustomRadio from "../CustomRadio";
 
 export default function ExtraCard({ extra, selectedExtras, setSelectedExtras }) {
     
@@ -26,17 +28,16 @@ export default function ExtraCard({ extra, selectedExtras, setSelectedExtras }) 
             <Spacer />
 
             <Text fontWeight={700} fontSize={20} color={'#9F9F9F'}>
-                R${((extra.price - extra.discount) / 100).toFixed(2).replace('.', ',')}
+                {centsToReal(extra.price - extra.discount)}
             </Text>
 
             <Spacer />
 
-            <Radio
-                size='lg' name='1'
-                borderColor='#125C13' isChecked={selectedExtras[extra.id]}
+            
+            <CustomRadio 
+                selected={selectedExtras[extra.id]}
                 onClick={() => setSelectedExtras({ ...selectedExtras, [extra.id]: !selectedExtras[extra.id] })}
-            >
-            </Radio>
+            />
 
         </Flex>
     )

@@ -11,13 +11,13 @@ export function ProductsProvider({ children }) {
   const { extras, extrasLoading, extrasError } = useGetExtras();
   const [productsFilter, setProductsFilter] = useState({ category: '', nameOrId: '' })
 
-  if (productsLoading | extrasLoading) {
+  if (productsLoading || extrasLoading) {
     return (
       <Splash loading={true} />
     )
   }
 
-  if (productsError | extrasError) {
+  if (productsError || extrasError) {
     return (
       <Splash message={'Erro ao tentar acessar API.'} />
     )

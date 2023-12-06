@@ -2,6 +2,7 @@ import { HomePage } from './pages/HomePage';
 import { ChakraProvider } from '@chakra-ui/react';
 import { extendTheme } from '@chakra-ui/react';
 import { ProductsProvider } from './contexts/ProductsContext';
+import { ItensProvider } from './contexts/ItensContext';
 
 const theme = extendTheme({
   fonts: {
@@ -14,7 +15,9 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <ProductsProvider>
-        <HomePage />
+        <ItensProvider>
+          <HomePage />
+        </ItensProvider>
       </ProductsProvider>
     </ChakraProvider>
   )

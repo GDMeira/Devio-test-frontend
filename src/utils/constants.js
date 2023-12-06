@@ -12,6 +12,12 @@ export const productTypes = {
   sideDishe: 'acompanhamento',
 };
 
+export const paymentMethods = {
+  creditCard: 'Crédito',
+  debitCard: 'Débito',
+  cash: 'Dinheiro',
+};
+
 export const bgColors = ['#FA6767', '#125C13', '#FFEB70'];
 
 function productContains(product, nameOrId) {
@@ -46,4 +52,37 @@ export function filterProducts(data, filters) {
   });
 
   return response;
+}
+
+export const productTypeEnumToAtrrs = {
+  BURGUER: 'burguers',
+  DRINK: 'drinks',
+  DESSERT: 'desserts',
+  SIDEDISHE: 'sideDishes',
+};
+
+export function calculateOrderPrice(itens) {
+  let totalPrice = 0;
+
+  itens.forEach((item) => {
+    totalPrice += item.quantity * (item.product.price - item.product.discount);
+
+    if (item.extras.length > 0) {
+      item.extras.forEach((extra) => {
+        totalPrice += item.quantity * (extra.price - extra.discount);
+      });
+    }
+  });
+
+  return totalPrice;
+}
+
+export function centsToReal(num) {
+  return (num / 100).toFixed(2).replace('.', ',');
+}
+
+export function realToCents(value) {
+  const radix = 10;
+
+  return parseInt((value.replace('R$ ', '')).replace(',', ''), radix);
 }
