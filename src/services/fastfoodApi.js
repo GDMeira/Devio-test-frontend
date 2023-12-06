@@ -5,3 +5,21 @@ export async function getProducts() {
 
   return response.data;
 }
+
+export async function getExtras() {
+  const response = await api.get('/extras');
+
+  return response.data;
+}
+
+export async function getOrderCode() {
+  const response = await api.get('/orders/code');
+
+  return response.data;
+}
+
+export async function postOrder(order) {
+  const response = await api.post('/orders', order);
+
+  return response.data;
+}
