@@ -2,7 +2,7 @@ import { Button, Flex } from "@chakra-ui/react";
 import styled from "styled-components";
 import { LiaHamburgerSolid } from "react-icons/lia";
 
-export default function Logo() {
+export default function Logo({setTabIndex}) {
     return (
         <ButtonSC
             onClick={() => setTabIndex(0)}

@@ -1,22 +1,15 @@
 import { Box, Divider, Flex, Spacer, Text } from "@chakra-ui/react";
+import { calculateOrderPrice } from "../../utils/constants";
 
 export default function Resume({ itens }) {
     if (itens.length > 0) {
-        let totalPrice = 0;
-
-        itens.forEach(item => {
-            totalPrice += item.quantity * (item.product.price - item.product.discount);
-
-            if (item.extras.length > 0) {
-                item.extras.forEach(extra => totalPrice += item.quantity * (extra.price - extra.discount));
-            }
-        })
+        const totalPrice = calculateOrderPrice(itens);
 
         return (
             <Flex
                 w={'100%'}
                 direction={'column'} mt={'50px'}
-                p={'30px 40px 20px'} border={'1px solid'}
+                p={'30px 40px 20px'} border={'#C7C7C7 1px solid'}
                 borderRadius={'5px'}
             >
                 {itens.map((item, i) => (
@@ -43,18 +36,20 @@ export default function Resume({ itens }) {
                             </Flex>
                         ))}
 
-                        <Text fontWeight={400} fontSize={20} ml={'30px'} mt={2}>
-                            OBS: {item.obs}
-                        </Text>
+                        {item.obs && (
+                            <Text fontWeight={400} fontSize={20} ml={'30px'} mt={2}>
+                                OBS: {item.obs}
+                            </Text>
+                        )}
                     </Box>
                 ))}
 
                 <Divider variant={'dashed'} />
 
-                <Text fontWeight={400} fontSize={20} >
+                <Text fontWeight={400} fontSize={20} textAlign={'left'}>
                     Total do pedido:
                 </Text>
-                <Text fontWeight={700} fontSize={36} >
+                <Text fontWeight={700} fontSize={36} textAlign={'left'}>
                     R$ {(totalPrice / 100).toFixed(2).replace('.', ',')}
                 </Text>
 

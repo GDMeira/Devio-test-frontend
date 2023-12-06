@@ -4,7 +4,7 @@ import ExtraCard from "./ExtraCard";
 
 export default function Extras({ selectedExtras, setSelectedExtras, productType }) {
     const { extrasData } = useProductsContext();
-    const extrasForThis = extrasData[productType.toLowerCase() + 's'];
+    const extrasForThis = extrasData[productType];
 
     useEffect(() => {
         const newExtras = {};

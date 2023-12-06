@@ -15,31 +15,31 @@ export function HomePage() {
         <Container>
             <Flex position={'absolute'} top={0} alignItems={'center'}>
 
-            <Tabs
-                index={tabIndex} onChange={handleTabsChange}
-                w={'100dvw'} align="end"
-                variant={'unstyled'}
-            >
-                <TabListSC bgColor={'#125C13'} h={'7dvh'} pl={5} pr={10}>
-                    <Logo/>
-                    <Spacer />
-                    <TabSC>Pedidos</TabSC>
-                    <TabSC>Cozinha</TabSC>
-                    <TabSC>Retirada</TabSC>
-                </TabListSC>
-                <TabPanels>
-                    <TabPanelSC>
-                        <OrdersTab />
-                    </TabPanelSC>
-                    <TabPanelSC>
-                        <p>Yeah yeah. What's up?</p>
-                    </TabPanelSC>
-                    <TabPanelSC>
-                        <p>Oh, hello there.</p>
-                    </TabPanelSC>
-                </TabPanels>
-            </Tabs>
-        </Flex>
+                <Tabs
+                    index={tabIndex} onChange={handleTabsChange}
+                    w={'100dvw'} align="end"
+                    variant={'unstyled'}
+                >
+                    <TabListSC bgColor={'#125C13'} h={'7dvh'} pl={5} pr={10}>
+                        <Logo setTabIndex={setTabIndex} />
+                        <Spacer />
+                        <TabSC>Pedidos</TabSC>
+                        <TabSC>Cozinha</TabSC>
+                        <TabSC>Retirada</TabSC>
+                    </TabListSC>
+                    <TabPanels>
+                        <TabPanelSC>
+                            <OrdersTab />
+                        </TabPanelSC>
+                        <TabPanelSC>
+                            <p>Yeah yeah. What's up?</p>
+                        </TabPanelSC>
+                        <TabPanelSC>
+                            <p>Oh, hello there.</p>
+                        </TabPanelSC>
+                    </TabPanels>
+                </Tabs>
+            </Flex>
         </Container>
     )
 }
