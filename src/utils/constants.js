@@ -24,6 +24,13 @@ export const enumPaidWith = {
   cash: 'CASH',
 };
 
+export const enumOrderStatus = {
+  canceled: 'CANCELED',
+  processing: 'PROCESSING',
+  ready: 'READY',
+  delivered: 'DELIVERED'
+}
+
 export const bgColors = ['#FA6767', '#125C13', '#FFEB70'];
 
 function productContains(product, nameOrId) {
