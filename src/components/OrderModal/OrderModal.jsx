@@ -7,7 +7,6 @@ import useProductsContext from "../../hooks/useProductsContext";
 import Resume from "../Orders/Resume";
 import useItensContext from "../../hooks/useItensContext";
 import { productTypeEnumToAtrrs } from "../../utils/constants";
-import styled from "styled-components";
 
 export default function OrderModal({ isOpen, onClose, selectedProduct, bgColor }) {
     const { extrasData } = useProductsContext();
@@ -45,7 +44,7 @@ export default function OrderModal({ isOpen, onClose, selectedProduct, bgColor }
             size={'6xl'}
         >
             <ModalOverlay />
-            <ModalContentSC padding={'40px 5% 0'}>
+            <ModalContent padding={'40px 5% 0'}>
                 <ModalHeader fontSize={36}>Revise seu pedido!</ModalHeader>
                 <ModalCloseButton fontSize={'20px'} color={'#9F9F9F'} />
                 <ModalBody>
@@ -76,7 +75,7 @@ export default function OrderModal({ isOpen, onClose, selectedProduct, bgColor }
                     )}
                 </ModalBody>
                 <ModalFooter>
-                    <ButtonSC
+                    <Button
                         onClick={() => {
                             setItens(itens => [...itens, { ...item }]);
                             cleanStates();
@@ -85,9 +84,9 @@ export default function OrderModal({ isOpen, onClose, selectedProduct, bgColor }
                         color={'#125C13'}
                         border={'#125C13 1px solid'}
                         borderRadius={'15px'} bgColor={'#fff'}
-                        minW={'17dvw'} h={'5dvh'}
-                    >Continuar adicionando</ButtonSC>
-                    <ButtonSC
+                        w={'17dvw'} h={'5dvh'}
+                    >Continuar adicionando</Button>
+                    <Button
                         onClick={() => {
                             setItens(itens => [...itens, { ...item }]);
                             setFinishingOrder(true);
@@ -96,22 +95,10 @@ export default function OrderModal({ isOpen, onClose, selectedProduct, bgColor }
                         }}
                         color={'#fff'}
                         borderRadius={'15px'} bgColor={'#125C13'}
-                        ml={'10dvw'} minW={'15dvw'} h={'5dvh'}
-                    >Finalizar pedido</ButtonSC>
+                        ml={'10dvw'} w={'15dvw'} h={'5dvh'}
+                    >Finalizar pedido</Button>
                 </ModalFooter>
-            </ModalContentSC>
+            </ModalContent>
         </Modal>
     )
 }
-
-const ModalContentSC = styled(ModalContent)`
-    @media (max-width: 700px) {
-        padding: 0 !important;
-    }
-`
-
-const ButtonSC = styled(Button)`
-    @media (max-width: 700px) {
-        font-size: 14px !important;
-    }
-`
