@@ -23,3 +23,15 @@ export async function postOrder(order) {
 
   return response.data;
 }
+
+export async function getOrders() {
+  const response = await api.get('/orders');
+
+  return response.data;
+}
+
+export async function patchOrder(newStatus, orderId) {
+  const response = await api.patch(`/orders/${orderId}`, { newStatus });
+
+  return response.data;
+}

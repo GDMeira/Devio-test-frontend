@@ -1,11 +1,28 @@
 import { Flex, Spacer, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Logo from "../components/Logo";
 import OrdersTab from "../components/Orders/OrdersTab";
+import KitchenTab from "../components/Kitchen/KitchenTab";
+import useGetOrders from "../hooks/api/useGetOrders";
+import PickUpTab from "../components/PickUp/PickUpTab";
 
 export function HomePage() {
-    const [tabIndex, setTabIndex] = useState(0)
+    const { getOrders } = useGetOrders();
+    const [tabIndex, setTabIndex] = useState(0);
+    const [orders, setOrders] = useState();
+
+    useEffect(() => {
+        getOrders()
+            .then(res => setOrders(res));
+        const timeToRepeat = 10000;
+        const intervalId = setInterval(() => {
+            getOrders()
+                .then(res => setOrders(res));
+        }, timeToRepeat);
+
+        return () => clearInterval(intervalId);
+    }, []);
 
     const handleTabsChange = (index) => {
         setTabIndex(index)
@@ -32,10 +49,10 @@ export function HomePage() {
                             <OrdersTab />
                         </TabPanelSC>
                         <TabPanelSC>
-                            <p>Yeah yeah. What's up?</p>
+                            <KitchenTab orders={orders} setOrders={setOrders} />
                         </TabPanelSC>
                         <TabPanelSC>
-                            <p>Oh, hello there.</p>
+                            <PickUpTab orders={orders} />
                         </TabPanelSC>
                     </TabPanels>
                 </Tabs>

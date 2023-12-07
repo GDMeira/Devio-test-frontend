@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Spacer, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Spacer, Text, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Swal from "sweetalert2";
@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import useItensContext from "../../hooks/useItensContext";
 import useGetOrderCode from "../../hooks/api/useGetOrderCode";
 
-import { calculateOrderPrice, enumPaidWith } from "../../utils/constants";
+import { calculateOrderPrice, enumPaidWith, thermalPrint } from "../../utils/constants";
 
 import Resume from "../Orders/Resume";
 import NameInput from "./NameInput";
@@ -14,7 +14,6 @@ import Code from "./Code";
 import Title from "./Title";
 import PaymentMethod from "./PaymentMethod";
 import usePostOrder from "../../hooks/api/usePostOrder";
-import Receipt from "./Receipt";
 
 export default function Payment() {
     const { getOrderCode } = useGetOrderCode();
@@ -29,6 +28,7 @@ export default function Payment() {
     });
     const totalPrice = calculateOrderPrice(itens);
     const [cashReceived, setCashReceived] = useState(totalPrice);
+    const toast = useToast();
 
     useEffect(() => {
         async function getCode() {
@@ -39,7 +39,7 @@ export default function Payment() {
         getCode();
     }, [])
 
-    function finishOrder() {
+    async function finishOrder() {
         let paidWith = '';
 
         Object.entries(paymentMethod).forEach(([key, value]) => {
@@ -59,26 +59,41 @@ export default function Payment() {
             }))
         };
 
-        postOrder(order)
-            .then(async (response) => {
-                Swal.fire({
-                    title: 'Sucesso!',
-                    icon: 'success',
-                    text: 'Pedido enviado para cozinha.'
-                });
-                const receipt = (<Receipt order={order} itens={itens} code={response.code} />)
-                
+        let response = {};
 
-                setItens([]);
-                setFinishingOrder(false);
-            }).catch((err) => {
-                Swal.fire({
-                    title: 'Falha!',
-                    icon: 'error',
-                    text: `Falha ao finalizar pedido.`
-                });
-                console.log(err.response.data)
-            })
+        try {
+            response = await postOrder(order);
+            Swal.fire({
+                title: 'Sucesso!',
+                icon: 'success',
+                text: 'Pedido enviado para cozinha.'
+            });
+        } catch (error) {
+            Swal.fire({
+                title: 'Falha!',
+                icon: 'error',
+                text: `Falha ao finalizar pedido.`
+            });
+
+            return
+        }
+
+        try {
+            thermalPrint(order, itens, response.code, totalPrice);
+        } catch (error) {
+            toast({
+                title: 'Erro!',
+                description: "Ocorreu uma falha na impressão do recibo.",
+                status: 'error',
+                duration: 9000,
+                isClosable: true,
+                position: 'top-right',
+              })
+        } finally {
+            setItens([]);
+            setFinishingOrder(false);
+        }
+        
     }
 
     return (
