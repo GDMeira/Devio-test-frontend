@@ -5,6 +5,7 @@ import Logo from "../components/Logo";
 import OrdersTab from "../components/Orders/OrdersTab";
 import KitchenTab from "../components/Kitchen/KitchenTab";
 import useGetOrders from "../hooks/api/useGetOrders";
+import PickUpTab from "../components/PickUp/PickUpTab";
 
 export function HomePage() {
     const { getOrders } = useGetOrders();
@@ -51,7 +52,7 @@ export function HomePage() {
                             <KitchenTab orders={orders} setOrders={setOrders} />
                         </TabPanelSC>
                         <TabPanelSC>
-                            <p>Oh, hello there.</p>
+                            <PickUpTab orders={orders} />
                         </TabPanelSC>
                     </TabPanels>
                 </Tabs>
