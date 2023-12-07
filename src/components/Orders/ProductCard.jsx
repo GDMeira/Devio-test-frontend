@@ -20,23 +20,23 @@ export default function ProductCard({ product, bgColor, setSelectedProduct, onOp
                 onOpen();
             }}
         >
-            <Flex 
+            <FlexSC
                 direction={'column'} h={'30dvh'}
                 justifyContent={'space-around'} alignItems={'center'} 
                 zIndex={2} >
                 <Image src={product.image} alt={product.name} w={'13dvh'} h={'13dvh'} />
-                <Box w={'10dvw'} overflow={'hidden'} textOverflow={'ellipsis'}>
+                <BoxSC w={'10dvw'} overflow={'hidden'} textOverflow={'ellipsis'}>
                     <Text fontWeight={700} fontSize={24}>
                         {product.name}
                     </Text>
                     <Text fontWeight={400} fontSize={12} color={'#6B6B6B'}>
                         {product.description}
                     </Text>
-                </Box>
+                </BoxSC>
                 <Text fontWeight={700} fontSize={20} >
                     R${((product.price - product.discount) / 100).toFixed(2).replace('.', ',')}
                 </Text>
-            </Flex>
+            </FlexSC>
             <Box
                 position={'absolute'} bottom={0}
                 w={'100%'} h={'60%'}
@@ -61,7 +61,25 @@ const ButtonSC = styled(Button)`
         
     }
 
-    @media screen and (max-width: 700px) {
+    @media (max-width: 700px) {
         margin-right: 1vw; 
+        height: 250px !important;
+    }
+`;
+
+const BoxSC = styled(Box)`
+    @media (max-width: 700px) {
+        width: 30dvw !important; 
+    }
+`;
+
+const FlexSC = styled(Flex)`
+    @media (max-width: 700px) {
+        height: 25dvh !important;
+        
+        img {
+            height: 11dvh !important;
+            width: 11dvh !important;
+        }
     }
 `;

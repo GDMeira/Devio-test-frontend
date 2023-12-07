@@ -1,6 +1,7 @@
 import { Box, Flex, Image, Radio, Spacer, Text } from "@chakra-ui/react";
 import { centsToReal } from "../../utils/constants";
 import CustomRadio from "../CustomRadio";
+import styled from "styled-components";
 
 export default function ExtraCard({ extra, selectedExtras, setSelectedExtras }) {
     
@@ -8,7 +9,7 @@ export default function ExtraCard({ extra, selectedExtras, setSelectedExtras }) 
     return (
         <Flex mt={'30px'} alignItems={'center'}>
 
-            <Image
+            <ImageSC
                 src={extra.image} alt={extra.name}
                 w={'10dvh'} h={'10dvh'}
                 borderRadius={'10px'}
@@ -17,19 +18,19 @@ export default function ExtraCard({ extra, selectedExtras, setSelectedExtras }) 
             />
 
             <Box minH={'6.5dvh'} maxH={'10dvh'} w={'40dvw'} overflow={'hidden'}>
-                <Text fontWeight={700} fontSize={24}>
+                <TitleSC fontWeight={700} fontSize={24}>
                     {extra.name}
-                </Text>
-                <Text fontWeight={400} fontSize={16} color={'#6B6B6B'}>
+                </TitleSC>
+                <TextSC fontWeight={400} fontSize={16} color={'#6B6B6B'}>
                     {extra.description}
-                </Text>
+                </TextSC>
             </Box>
 
             <Spacer />
 
-            <Text fontWeight={700} fontSize={20} color={'#9F9F9F'}>
-                {centsToReal(extra.price - extra.discount)}
-            </Text>
+            <TextSC fontWeight={700} fontSize={20} color={'#9F9F9F'}>
+                R${centsToReal(extra.price - extra.discount)}
+            </TextSC>
 
             <Spacer />
 
@@ -42,3 +43,21 @@ export default function ExtraCard({ extra, selectedExtras, setSelectedExtras }) 
         </Flex>
     )
 }
+
+const TitleSC = styled(Text)`
+    @media (max-width: 700px) {
+        font-size: 16px !important;
+    }
+`
+
+const TextSC = styled(Text)`
+    @media (max-width: 700px) {
+        font-size: 14px !important;
+    }
+`
+
+const ImageSC = styled(Image)`
+    @media (max-width: 700px) {
+       margin-right: 10px !important;
+    }
+`
