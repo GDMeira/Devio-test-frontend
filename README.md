@@ -1,11 +1,13 @@
-# name
+# OrderManager
 
-short app description
+The OrderManager provides a platform to place orders, display these orders for kitchen staff, and presents screens for both ready and in-progress orders to clients.
 
 ## About
 
-large description
-[deploy link]()
+In the OrderManager, you can easily create an order, filter products by category, name, or ID. Each product can be customized with extras and notes to form an item that comprises the order. A preview of the order is displayed, and upon finalizing the order, you can select the client's name and payment method to complete it. This order is then visible in the kitchen and on the client's screen. Once the kitchen marks the order as ready, the client's screen updates to notify the customer.
+
+[Deploy Link](https://devio-test-frontend.vercel.app/)
+
 
 ## Technologies
 
