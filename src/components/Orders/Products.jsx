@@ -4,6 +4,7 @@ import { bgColors, filterProducts } from "../../utils/constants";
 import ProductCard from "./ProductCard";
 import { useEffect, useState } from "react";
 import OrderModal from "../OrderModal/OrderModal";
+import styled from "styled-components";
 
 export default function Products() {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -19,7 +20,7 @@ export default function Products() {
 
     return (
         <>
-            <Flex justifyContent={"space-between"} w={'100%'} wrap={"wrap"}>
+            <FlexSC justifyContent={"space-between"} w={'100%'} wrap={"wrap"}>
                 {productsToRender.length > 0 && productsToRender.map((product, i) => <ProductCard
                     key={product.id}
                     product={product}
@@ -28,7 +29,7 @@ export default function Products() {
                     onOpen={onOpen}
                     setBgColor={setBgColor}
                 />)}
-            </Flex>
+            </FlexSC>
             <OrderModal 
                 isOpen={isOpen} onClose={onClose} 
                 selectedProduct={selectedProduct} bgColor={bgColor}
@@ -36,3 +37,9 @@ export default function Products() {
         </>
     )
 }
+
+const FlexSC = styled(Flex)`
+    @media (max-width: 700px) {
+        justify-content: space-around !important;
+    }
+`

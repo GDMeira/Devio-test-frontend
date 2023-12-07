@@ -39,13 +39,13 @@ export default function OrdersTab() {
                             color={'#125C13'}
                             border={'#125C13 1px solid'}
                             borderRadius={'15px'} bgColor={'#fff'}
-                            w={'20dvw'} h={'6dvh'}
+                            minW={'20dvw'} h={'6dvh'}
                         >Cancelar</Button>
                         <Button
                             onClick={() => setFinishingOrder(true)}
                             color={'#fff'}
                             borderRadius={'15px'} bgColor={'#125C13'}
-                            ml={'10dvw'} w={'20dvw'} h={'6dvh'}
+                            ml={'10dvw'} minW={'20dvw'} h={'6dvh'}
                         >
                             Finalizar pedido
                         </Button>
