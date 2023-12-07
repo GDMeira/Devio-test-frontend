@@ -92,3 +92,59 @@ export function realToCents(value) {
 
   return parseInt((value.replace('R$ ', '')).replace(',', ''), radix);
 }
+
+function connectPrinter() {
+  let ePosDev = new window.epson.ePOSDevice();
+  ePosDevice.current = ePosDev;
+  printerIPAddress = import.meta.env.VITE_PRINTER_IP;
+  printerPort = import.meta.env.VITE_PRINTER_PORT;
+
+  ePosDev.connect(printerIPAddress, printerPort, (data) => {
+    if (data === "OK") {
+      ePosDev.createDevice(
+        "local_printer",
+        ePosDev.DEVICE_TYPE_PRINTER,
+        { crypto: true, buffer: false },
+        (devobj, retcode) => {
+          if (retcode === "OK") {
+            printer.current = devobj;
+            setConnectionStatus(STATUS_CONNECTED);
+          } else {
+            throw retcode;
+          }
+        }
+      );
+    } else {
+      throw data;
+    }
+  });
+}
+
+function printText(text) {
+  let prn = printer.current;
+  if (!prn) {
+    return;
+  }
+
+  prn.addText(text);
+  prn.addFeedLine(5);
+  prn.addCut(prn.CUT_FEED);
+
+  prn.send();
+}
+
+export function thermalPrint(order, itens, code, totalPrice) {
+  connectPrinter();
+
+  const text = `${order.clientName} Code: ${code}\h
+  Preço total: ${centsToReal(totalPrice)}\h
+  ***********************************
+  ${itens.map(item => `${item.quantity}x ${item.product.name} ${centsToReal(item.product.price - item.product.discount)}
+    ${item.extras.length > 0 && item.extras.map(extra => `
+      \h\t${item.quantity}x ${extra.name} ${centsToReal(extra.price - extra.discount)}
+    `).join('')}
+  `).join('\h')}
+  `;
+
+  printText(text);
+}
