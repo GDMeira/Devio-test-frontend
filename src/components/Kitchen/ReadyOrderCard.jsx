@@ -1,10 +1,23 @@
 import { Box, Button, Flex, IconButton, Image, Spacer, Text } from "@chakra-ui/react";
 
-export default function ReadyOrderCard({ order }) {
+import { enumOrderStatus } from "../../utils/constants";
+import usePatchOrder from "../../hooks/api/usePatchOrder";
+import useGetOrders from "../../hooks/api/useGetOrders";
+
+export default function ReadyOrderCard({ order, setOrders }) {
+    const { patchOrder } = usePatchOrder();
+    const { getOrders } = useGetOrders();
+
+    async function handleDeliveredClick() {
+        await patchOrder(enumOrderStatus.delivered, order.id);
+        const orders = await getOrders();
+        setOrders(orders);
+    }
+
     return (
         <Flex
             w={'80%'} h={'10dvh'}
-            boxShadow={'0 10px 30px #43B948'} border={'1px solid #43B948'}
+            boxShadow={'0 10px 30px rgba(67, 185, 72, 0.2)'} border={'1px solid #43B948'}
             alignItems={'center'} gap={5}
             p={'0 20px'} borderRadius={'10px'}
         >
@@ -39,7 +52,10 @@ export default function ReadyOrderCard({ order }) {
 
             <Spacer />
 
-            <Button bgColor={'#FAE5E5'} color={'#CF0404'} borderRadius={'15px'}>
+            <Button 
+                bgColor={'#FAE5E5'} color={'#CF0404'} 
+                borderRadius={'15px'} onClick={handleDeliveredClick}
+            >
                 X
             </Button>
         </Flex>

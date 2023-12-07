@@ -1,13 +1,38 @@
-import { Box, Button, Flex, IconButton, Image, Spacer, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, IconButton, Image, Spacer, Text, useDisclosure } from "@chakra-ui/react";
 import { IoMdCheckmark } from "react-icons/io";
 
-export default function ProcessingOrderCard({ order }) {
+import usePatchOrder from "../../hooks/api/usePatchOrder";
+import { enumOrderStatus } from "../../utils/constants";
+import useGetOrders from "../../hooks/api/useGetOrders";
+import ProcessingOrderModal from "./ProcessingOrderModal";
+
+export default function ProcessingOrderCard({ order, setOrders }) {
+    const { patchOrder } = usePatchOrder();
+    const { getOrders } = useGetOrders();
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    async function handleCanceledClick(e) {
+        e.stopPropagation();
+        await patchOrder(enumOrderStatus.canceled, order.id);
+        const orders = await getOrders();
+        setOrders(orders);
+    }
+
+    async function handleReadyClick(e) {
+        e.stopPropagation();
+        await patchOrder(enumOrderStatus.ready, order.id);
+        const orders = await getOrders();
+        setOrders(orders);
+    }
+
     return (
         <Flex
-            w={'80%'} h={'10dvh'}
+            w={'80%'} minH={'10dvh'}
             boxShadow={'0 10px 30px rgba(0, 0, 0, 0.2)'}
             alignItems={'center'} gap={5}
             p={'0 20px'} borderRadius={'10px'}
+            cursor={'pointer'}
+            onClick={onOpen}
         >
 
             <Flex
@@ -41,15 +66,21 @@ export default function ProcessingOrderCard({ order }) {
             <Spacer />
 
             <Flex gap={3}>
-                <Button bgColor={'#FAE5E5'} color={'#CF0404'} borderRadius={'15px'}>
+                <Button 
+                    bgColor={'#FAE5E5'} color={'#CF0404'} 
+                    borderRadius={'15px'} onClick={handleCanceledClick}
+                >
                     X
                 </Button>
 
                 <IconButton
                     aria-label='Order is ready' icon={<IoMdCheckmark />}
                     bgColor={'#E5F5E6'} color={'#43B948'} borderRadius={'15px'}
+                    onClick={handleReadyClick}
                 />
             </Flex>
+
+            <ProcessingOrderModal isOpen={isOpen} onClose={onClose} order={order} setOrders={setOrders} />
         </Flex>
     )
 }

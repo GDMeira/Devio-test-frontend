@@ -6,7 +6,7 @@ export default function KitchenTab({ orders, setOrders }) {
     //TODO: setOrders quando der update em uma order
     console.log(orders)
     return (
-        <Flex w={'100%'}>
+        <Flex w={'100%'} mb={'30px'}>
             <Flex 
                 w={'50%'} direction="column" 
                 gap={'20px'} textAlign={'left'}
@@ -17,7 +17,7 @@ export default function KitchenTab({ orders, setOrders }) {
                 </Text>
 
                 {orders?.processing?.length > 0 && orders.processing.map(order => (
-                    <ProcessingOrderCard key={order.id} order={order}/>
+                    <ProcessingOrderCard key={order.id} order={order} setOrders={setOrders} />
                 ))}
             </Flex>
 
@@ -33,7 +33,7 @@ export default function KitchenTab({ orders, setOrders }) {
                 </Text>
 
                 {orders?.ready?.length > 0 && orders.ready.map(order => (
-                    <ReadyOrderCard key={order.id} order={order}/>
+                    <ReadyOrderCard key={order.id} order={order} setOrders={setOrders} />
                 ))}
             </Flex>
         </Flex>
