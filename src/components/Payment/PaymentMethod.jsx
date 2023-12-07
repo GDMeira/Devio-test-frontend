@@ -2,6 +2,7 @@ import { Box, Button, Flex, Input, InputGroup, InputRightElement, Spacer, VStack
 import { centsToReal, realToCents } from "../../utils/constants";
 import { TextSC } from "./Payment";
 import MethodButton from "./MethodButton";
+import styled from "styled-components";
 
 export default function PaymentMethod({ 
     paymentMethod,
@@ -27,7 +28,7 @@ export default function PaymentMethod({
 
 
     return (
-        <Box w={'45%'}>
+        <BoxSC w={'45%'}>
             <TextSC fontWeight={700}>
                 Selecione a forma de pagamento:
             </TextSC>
@@ -81,6 +82,13 @@ export default function PaymentMethod({
                     </Flex>
                 </Box>
             </Flex>
-        </Box>
+        </BoxSC>
     )
 }
+
+const BoxSC = styled(Box)`
+    @media (max-width: 700px) {
+        width: 100% !important;
+        margin-top: 20px;
+    }
+`

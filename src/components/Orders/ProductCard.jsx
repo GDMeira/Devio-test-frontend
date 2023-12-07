@@ -9,7 +9,7 @@ export default function ProductCard({ product, bgColor, setSelectedProduct, onOp
     return (
         <ButtonSC 
             w={'15dvw'} h={'35dvh'} 
-            minW={'200px'} minH={'250px'}
+            minW={'150px'} minH={'200px'}
             bg={'none'} borderRadius={'20px'} 
             bgImage={bgImage} bgColor={bgColor} 
             mb={'7dvh'} mr={'2dvw'}
@@ -54,6 +54,11 @@ const ButtonSC = styled(Button)`
 
     &:nth-child(4n) { 
         margin-right: 0;
+    }
+
+    @media screen and (max-width: 1080px) {
+        margin-right: 1vw !important;
+        
     }
 
     @media screen and (max-width: 700px) {

@@ -16,7 +16,7 @@ export default function ExtraCard({ extra, selectedExtras, setSelectedExtras }) 
                 mr={10}
             />
 
-            <Box minH={'6.5dvh'} w={'40dvw'} >
+            <Box minH={'6.5dvh'} maxH={'10dvh'} w={'40dvw'} overflow={'hidden'}>
                 <Text fontWeight={700} fontSize={24}>
                     {extra.name}
                 </Text>

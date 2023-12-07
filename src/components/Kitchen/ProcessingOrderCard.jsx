@@ -5,6 +5,7 @@ import usePatchOrder from "../../hooks/api/usePatchOrder";
 import { enumOrderStatus } from "../../utils/constants";
 import useGetOrders from "../../hooks/api/useGetOrders";
 import ProcessingOrderModal from "./ProcessingOrderModal";
+import styled from "styled-components";
 
 export default function ProcessingOrderCard({ order, setOrders }) {
     const { patchOrder } = usePatchOrder();
@@ -26,7 +27,7 @@ export default function ProcessingOrderCard({ order, setOrders }) {
     }
 
     return (
-        <Flex
+        <FlexSC
             w={'80%'} minH={'10dvh'}
             boxShadow={'0 10px 30px rgba(0, 0, 0, 0.2)'}
             alignItems={'center'} gap={5}
@@ -52,14 +53,14 @@ export default function ProcessingOrderCard({ order, setOrders }) {
                 w={'10dvw'} h={'10dvh'}
                 direction={'column'} justifyContent={'center'} textAlign={'left'}
             >
-                <Box w={'10dvw'} >
+                <BoxSC w={'10dvw'} >
                     <Text fontWeight={700} fontSize={18}>
                         {order.id} {order.clientName.length > 0 && `- ${order.clientName}`}
                     </Text>
                     <Text fontWeight={400} fontSize={14} color={'#6B6B6B'}>
                         {order.itens[0].quantity}x {order.itens[0].product.name}
                     </Text>
-                </Box>
+                </BoxSC>
 
             </Flex>
 
@@ -81,6 +82,18 @@ export default function ProcessingOrderCard({ order, setOrders }) {
             </Flex>
 
             <ProcessingOrderModal isOpen={isOpen} onClose={onClose} order={order} setOrders={setOrders} />
-        </Flex>
+        </FlexSC>
     )
 }
+
+const FlexSC = styled(Flex)`
+    @media (max-width: 700px) {
+        width: 100% !important;
+    }
+`
+
+const BoxSC = styled(Box)`
+    @media (max-width: 700px) {
+        width: 25dvw !important;
+    }
+`
