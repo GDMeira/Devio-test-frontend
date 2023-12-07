@@ -3,8 +3,6 @@ import ProcessingOrderCard from "./ProcessingOrderCard";
 import ReadyOrderCard from "./ReadyOrderCard";
 
 export default function KitchenTab({ orders, setOrders }) {
-    //TODO: setOrders quando der update em uma order
-    console.log(orders)
     return (
         <Flex w={'100%'} mb={'30px'}>
             <Flex 

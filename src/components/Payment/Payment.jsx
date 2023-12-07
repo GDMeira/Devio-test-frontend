@@ -59,9 +59,6 @@ export default function Payment() {
             }))
         };
 
-        console.log(itens)
-        console.log(order)
-
         let response = {};
 
         try {

@@ -1,4 +1,4 @@
-import { Button, Flex, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, Text, Textarea } from "@chakra-ui/react"
+import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, Text, Textarea } from "@chakra-ui/react"
 import ResumeOrder from "./ResumeOrder";
 import usePatchOrder from "../../hooks/api/usePatchOrder";
 import useGetOrders from "../../hooks/api/useGetOrders";
