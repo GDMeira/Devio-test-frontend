@@ -1,12 +1,11 @@
 import { Flex, Spacer, Text } from "@chakra-ui/react";
 import ProcessingOrderCard from "./ProcessingOrderCard";
 import ReadyOrderCard from "./ReadyOrderCard";
-import styled from "styled-components";
 
 export default function KitchenTab({ orders, setOrders }) {
     return (
-        <FlexSC w={'100%'} mb={'30px'}>
-            <FlexProcessingSC 
+        <Flex w={'100%'} mb={'30px'}>
+            <Flex 
                 w={'50%'} direction="column" 
                 gap={'20px'} textAlign={'left'}
                 borderRight={'1px solid #000'}
@@ -18,11 +17,11 @@ export default function KitchenTab({ orders, setOrders }) {
                 {orders?.processing?.length > 0 && orders.processing.map(order => (
                     <ProcessingOrderCard key={order.id} order={order} setOrders={setOrders} />
                 ))}
-            </FlexProcessingSC>
+            </Flex>
 
             <Spacer />
 
-            <FlexReadySC
+            <Flex 
                 w={'40%'} direction="column" 
                 gap={'20px'} textAlign={'left'}
                 
@@ -35,28 +34,7 @@ export default function KitchenTab({ orders, setOrders }) {
                 {orders?.ready?.length > 0 && orders.ready.map(order => (
                     <ReadyOrderCard key={order.id} order={order} setOrders={setOrders} />
                 ))}
-            </FlexReadySC>
-        </FlexSC>
+            </Flex>
+        </Flex>
     )
 }
-
-const FlexSC = styled(Flex)`
-    @media (max-width: 700px) {
-        flex-direction: column !important;
-    }
-`
-
-const FlexProcessingSC = styled(Flex)`
-    @media (max-width: 700px) {
-        width: 100% !important;
-        border: none !important;
-    }
-`
-
-const FlexReadySC = styled(Flex)`
-    @media (max-width: 700px) {
-        width: 100% !important;
-        border: none !important;
-        margin-top: 20px;
-    }
-`
