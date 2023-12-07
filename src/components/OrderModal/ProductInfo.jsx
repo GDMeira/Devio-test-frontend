@@ -31,7 +31,7 @@ export default function ProductInfo({ product, productNumber, setProductNumber, 
                     <Text fontWeight={700} fontSize={24}>
                         {product.name}
                     </Text>
-                    <Text fontWeight={400} fontSize={14} >
+                    <Text fontWeight={400} fontSize={14} color={'#6B6B6B'}>
                         {product.description}
                     </Text>
                 </Box>
