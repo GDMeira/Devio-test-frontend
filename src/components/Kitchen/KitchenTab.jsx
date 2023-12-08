@@ -27,6 +27,7 @@ export default function KitchenTab({ orders, setOrders }) {
                 gap={'20px'} textAlign={'left'}
                 
             >
+                
                 <Text fontWeight={700} fontSize={32} mb={'20px'}>
                     Pronto
                 </Text>
