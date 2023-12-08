@@ -100,8 +100,8 @@ export default function Payment() {
         <Box textAlign={'left'}>
             <Title />
 
-            <Flex w={'100%'} mt={'40px'}>
-                <Box w={'45%'}>
+            <FlexSC w={'100%'} mt={'40px'}>
+                <BoxSC w={'45%'}>
                     <TextSC fontWeight={700} mb={-7}>
                         Resumo da compra
                     </TextSC>
@@ -114,7 +114,7 @@ export default function Payment() {
 
                         <Code code={code} />
                     </Flex>
-                </Box>
+                </BoxSC>
 
                 <Spacer />
 
@@ -123,7 +123,7 @@ export default function Payment() {
                     cashReceived={cashReceived} setCashReceived={setCashReceived}
                     totalPrice={totalPrice}
                 />
-            </Flex>
+            </FlexSC>
 
             <Flex justifyContent={'flex-end'} w={'100%'} m={'50px 0'}>
                 <Button
@@ -133,14 +133,14 @@ export default function Payment() {
                     color={'#125C13'}
                     border={'#125C13 1px solid'}
                     borderRadius={'15px'} bgColor={'#fff'}
-                    w={'20dvw'} h={'6dvh'}
+                    minW={'20dvw'} h={'6dvh'}
                     isDisabled={postOrderLoading}
                 >Cancelar</Button>
                 <Button
                     onClick={() => finishOrder()}
                     color={'#fff'}
                     borderRadius={'15px'} bgColor={'#125C13'}
-                    ml={'10dvw'} w={'20dvw'} h={'6dvh'}
+                    ml={'10dvw'} minW={'20dvw'} h={'6dvh'}
                     isLoading={postOrderLoading}
                 >
                     Finalizar pedido
@@ -152,4 +152,16 @@ export default function Payment() {
 
 export const TextSC = styled(Text)`
     font-size: 18px;
+`
+
+const FlexSC = styled(Flex)`
+    @media (max-width: 700px) {
+        flex-direction: column !important;
+    }
+`
+
+const BoxSC = styled(Box)`
+    @media (max-width: 700px) {
+        width: 100% !important;
+    }
 `

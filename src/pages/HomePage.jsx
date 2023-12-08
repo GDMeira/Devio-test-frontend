@@ -96,6 +96,6 @@ const TabPanelSC = styled(TabPanel)`
     padding: 10dvh 10dvw 0 10dvw !important;
 
     @media(max-width: 700px) {
-        padding: 5dvh 0 0 0 !important;
+        padding: 5dvh 2dvw 0 !important;
     }
 `;
