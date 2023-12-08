@@ -8,7 +8,7 @@ export default function ResumeOrder({ itens }) {
                 w={'100%'}
                 direction={'column'} mt={'50px'}
                 p={'30px 40px 20px'} border={'#C7C7C7 1px solid'}
-                borderRadius={'5px'}
+                borderRadius={'5px'} textAlign={'left'}
             >
                 {itens.map((item, i) => (
                     <Box key={i}>
