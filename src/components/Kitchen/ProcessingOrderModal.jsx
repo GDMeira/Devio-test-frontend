@@ -3,6 +3,7 @@ import ResumeOrder from "./ResumeOrder";
 import usePatchOrder from "../../hooks/api/usePatchOrder";
 import useGetOrders from "../../hooks/api/useGetOrders";
 import { enumOrderStatus } from "../../utils/constants";
+import styled from "styled-components";
 
 export default function ProcessingOrderModal({ isOpen, onClose, order, setOrders }) {
     const { patchOrder } = usePatchOrder();
@@ -39,7 +40,7 @@ export default function ProcessingOrderModal({ isOpen, onClose, order, setOrders
                     <ResumeOrder itens={order.itens} />
                 </ModalBody>
                 <ModalFooter>
-                    <Button
+                    <ButtonSC
                         onClick={(e) => {
                             handleCanceledClick(e);
                             onClose();
@@ -47,19 +48,25 @@ export default function ProcessingOrderModal({ isOpen, onClose, order, setOrders
                         color={'#125C13'}
                         border={'#125C13 1px solid'}
                         borderRadius={'15px'} bgColor={'#fff'}
-                        w={'17dvw'} h={'5dvh'}
-                    >Cancelar pedido</Button>
-                    <Button
+                        minW={'17dvw'} h={'5dvh'}
+                    >Cancelar pedido</ButtonSC>
+                    <ButtonSC
                         onClick={(e) => {
                             handleReadyClick(e)
                             onClose();
                         }}
                         color={'#fff'}
                         borderRadius={'15px'} bgColor={'#125C13'}
-                        ml={'10dvw'} w={'15dvw'} h={'5dvh'}
-                    >Pedido pronto!</Button>
+                        ml={'10dvw'} minW={'15dvw'} h={'5dvh'}
+                    >Pedido pronto!</ButtonSC>
                 </ModalFooter>
             </ModalContent>
         </Modal>
     )
 }
+
+const ButtonSC = styled(Button)`
+    @media (max-width: 700px) {
+        font-size: 14px !important;
+    }
+`
