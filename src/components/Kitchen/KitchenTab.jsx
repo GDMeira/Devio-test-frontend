@@ -18,6 +18,7 @@ export default function KitchenTab({ orders, setOrders }) {
                 {orders?.processing?.length > 0 && orders.processing.map(order => (
                     <ProcessingOrderCard key={order.id} order={order} setOrders={setOrders} />
                 ))}
+
             </FlexProcessingSC>
 
             <Spacer />
@@ -35,6 +36,7 @@ export default function KitchenTab({ orders, setOrders }) {
                 {orders?.ready?.length > 0 && orders.ready.map(order => (
                     <ReadyOrderCard key={order.id} order={order} setOrders={setOrders} />
                 ))}
+                
             </FlexReadySC>
         </FlexSC>
     )
